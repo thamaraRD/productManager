@@ -9,10 +9,12 @@ const ProductSchema = new mongoose.Schema({
     Precio: {
         type: Number,
         required: [true, 'Debe ingresar el precio'],
+        minlength: [2, 'El Precio debe tener dos dígitos']
     },
     Descripción: {
         type: String,
-        required: [true, 'La descripción debe tener al menos dos palabras']
+        required: [true, 'El artículo debe tener una descripción'],
+        minlength: [2, 'La descripción debe tener al menos 2 letras']
     }
 }, {timestamps: true});
 

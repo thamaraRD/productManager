@@ -15,6 +15,7 @@ const Create = () =>{
         .min(2, 'El precio debe tener al menos 2 dígitos')
         .required('Debe tener un precio'),
         Descripción: Yup.string()
+        .min(2, 'Debe describir más el artículo')
         .required('Debe describir el artículo')
     });
 
@@ -30,10 +31,10 @@ const Create = () =>{
             })
         }
         catch(error){
-            console.log(error);
+            console.log(error.response.data);
             Swal.fire({
                 title: 'Error!',
-                text: `${error.response.data.error}`,
+                text: `${error.response.data}`,
                 icon: 'error',
                 confirmButtonText: 'Ok'
             })
@@ -55,17 +56,17 @@ const Create = () =>{
     >
     {({ errors, touched }) => (
         <Form>
-            <label htmlFor="Título">Título</label>
+            <label htmlFor="Título">Título:</label>
         <Field name="Título" />
         {<errors className="Título"></errors> && touched.Título ? (
             <div className={styles.errors}>{errors.Título}</div>
         ) : null}
-        <label htmlFor="Precio">Precio</label>
+        <label htmlFor="Precio">Precio:</label>
         <Field name="Precio" type="number" />
         {errors.Precio && touched.Precio ? (
             <div className={styles.errors}>{errors.Precio}</div>
         ) : null}
-        <label htmlFor="Descripción">Descripción</label>
+        <label htmlFor="Descripción">Descripción:</label>
         <Field name="Descripción" />
         {errors.Descripción && touched.Descripción ? (
             <div className={styles.errors}>{errors.Descripción}</div>
