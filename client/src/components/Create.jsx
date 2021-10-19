@@ -31,10 +31,10 @@ const Create = () =>{
             })
         }
         catch(error){
-            console.log(error.response.data);
+            console.log(error.response.data.error.message);
             Swal.fire({
                 title: 'Error!',
-                text: error.response.data,
+                text: error.response.data.error.message,
                 icon: 'error',
                 confirmButtonText: 'Ok'
             })
