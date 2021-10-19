@@ -12,9 +12,10 @@ const Create = () =>{
         .min(2, 'La palabra no puede tener menos de 2 caracteres')
         .required('Debe ingresar una palabra'),
         Precio: Yup.number()
+        .min(2, 'El precio debe tener al menos 2 dígitos')
         .required('Debe tener un precio'),
         Descripción: Yup.string()
-        .required('Debe describir el artículo'),
+        .required('Debe describir el artículo')
     });
 
     const createProduct = async (values) => {
@@ -35,7 +36,7 @@ const Create = () =>{
                 text: `${error.response.data.error}`,
                 icon: 'error',
                 confirmButtonText: 'Ok'
-              })
+            })
         }
     }
     
