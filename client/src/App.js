@@ -14,6 +14,7 @@ function App() {
           <Route exact path="/create">
             <Create />
           </Route>
+          
         </Switch>
     </Router>
     </div>

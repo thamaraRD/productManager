@@ -34,7 +34,7 @@ const Create = () =>{
             console.log(error.response.data);
             Swal.fire({
                 title: 'Error!',
-                text: `${error.response.data}`,
+                text: error.response.data,
                 icon: 'error',
                 confirmButtonText: 'Ok'
             })
