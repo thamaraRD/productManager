@@ -3,7 +3,7 @@ import styles from './Create.module.scss';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 
 const Create = () =>{
@@ -21,10 +21,21 @@ const Create = () =>{
         try{
             const response = await axios.post('http://localhost:8000/api/products', values)
             console.log(response.data);
+            Swal.fire({
+                title: 'Guardado con exíto',
+                text: 'Tu producto se ha guardado con exíto',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            })
         }
         catch(error){
             console.log(error);
-           
+            Swal.fire({
+                title: 'Error!',
+                text: `${error.response.data.error}`,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
         }
     }
     
