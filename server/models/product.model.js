@@ -14,10 +14,10 @@ const ProductSchema = new mongoose.Schema({
     Descripción: {
         type: String,
         required: [true, 'El artículo debe tener una descripción'],
-        minlength: [2, 'La descripción debe tener al menos 2 letras']
+        minlength: [5, 'La descripción debe tener al menos 5 letras']
     }
 }, {timestamps: true});
 
 const Product = mongoose.model('Product', ProductSchema);
-ProductSchema.plugin(uniqueValidator);
+ProductSchema.plugin(uniqueValidator, { message: '{PATH} debe ser unico' });
 module.exports = Product;
