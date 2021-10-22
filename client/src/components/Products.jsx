@@ -4,6 +4,17 @@ import { Table, Space } from 'antd';
 
 const Products = () => {
 
+const deleteProduct = async (id) =>{
+try{
+    const productErased = await axios.delete(`http://localhost:8000/api/products/${id}`);
+    getAllProducts();
+    console.log(productErased);
+
+}catch(error){
+console.log(error);
+}
+}
+
 const [productList, setProductList] = useState([]);
 
 const columns = [
@@ -26,22 +37,22 @@ const columns = [
     dataIndex: 'price',
     key: 'price',
     },
-    // {
-    //     title: 'Action',
-    //     key: 'action',
-    //     render: (text, record) => (
-    //       <Space size="middle">
-    //         <a>Invite {record.name}</a>
-    //         <a>Delete</a>
-    //       </Space>
-    //     ),
-    //   },
+    {
+        title: 'ACCIONES',
+        key: 'action',
+        render: (text, record) => (
+        <Space size="middle">
+        <button onClick={() => deleteProduct(record.key)}>Eliminar</button>
+        <a href={`/update-product/${record.key}`}>Editar Producto</a>
+        </Space>
+        ),
+    },
     ];
 
     const data = productList?.map(product =>({
         key: product._id,
-        name: product.Título,
-        price: product.Precio,
+        name: product.title,
+        price: product.price,
     }));
 
 const getAllProducts = async () => {
@@ -64,7 +75,7 @@ getAllProducts();
             <h1 className="color-letters">Lista de Productos</h1>
             <ul>
                 {productList?.map(product =>(
-                    <li key={product._id}>{product.Título}</li>
+                    <li key={product._id}>{product.title}</li>
                 ))}
             </ul>
             <Table columns={columns} dataSource={data} />

@@ -8,6 +8,7 @@ import {
 import Create from './components/Create';
 import Products from './components/Products';
 import Detail from './components/Detail';
+import UpdateProduct from './components/UpdateProduct';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/products/:id">
           <Detail />
+          </Route>
+          <Route exact path="/update-product/:id">
+            <UpdateProduct/>
           </Route>
         </Switch>
     </Router>

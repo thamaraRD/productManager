@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 
 
@@ -20,13 +20,15 @@ const Detail = () => {
 useEffect(() => {
 console.log(id);
 getProductById();
-}, [id])
+}, [id])// eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="card">
-            <h1 className="color-letters">{product?.Título}</h1>
-            <h2 className="color-letters">{product?.Precio}</h2>
-            <p className="color-letters">{product?.Descripción}</p>
+            <h1 className="color-letters">{product?.title}</h1>
+            <h2 className="color-letters">{product?.price}</h2>
+            <p className="color-letters">{product?.description}</p>
+            <hr />
+            <Link to={`/update-product/${product?._id}`}>Editar Producto</Link>
         </div>
     )
 }

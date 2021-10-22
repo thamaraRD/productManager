@@ -5,16 +5,15 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-
 const Create = () =>{
     const SignupSchema = Yup.object().shape({
-        Título: Yup.string()
+        title: Yup.string()
         .min(2, 'La palabra no puede tener menos de 2 caracteres')
         .required('Debe ingresar una palabra'),
-        Precio: Yup.number()
+        price: Yup.number()
         .min(2, 'El precio debe tener al menos 2 dígitos')
         .required('Debe tener un precio'),
-        Descripción: Yup.string()
+        description: Yup.string()
         .min(2, 'Debe describir más el artículo')
         .required('Debe describir el artículo')
     });
@@ -43,35 +42,35 @@ const Create = () =>{
     
     return(
         <>
-        <h1>Product Manager</h1>
+        <h1 className="color-letters">Product Manager</h1>
         <div className={styles.card}>
         <Formik
     initialValues={{
-        Título: '',
-        Precio: '',
-        Descripción: '',
+        title: '',
+        price: '',
+        description: '',
     }}
     validationSchema={SignupSchema}
     onSubmit={createProduct}
     >
     {({ errors, touched }) => (
         <Form>
-            <label htmlFor="Título">Título:</label>
-        <Field name="Título" />
-        {<errors className="Título"></errors> && touched.Título ? (
-            <div className={styles.errors}>{errors.Título}</div>
+            <label className="color-letters" htmlFor="title">Título:</label>
+        <Field name="title" />
+        {<errors className="title"></errors> && touched.title ? (
+            <div className={styles.errors}>{errors.title}</div>
         ) : null}
-        <label htmlFor="Precio">Precio:</label>
-        <Field name="Precio" type="number" />
-        {errors.Precio && touched.Precio ? (
-            <div className={styles.errors}>{errors.Precio}</div>
+        <label className="color-letters" htmlFor="price">Precio:</label>
+        <Field name="price" type="number" />
+        {errors.price && touched.price ? (
+            <div className={styles.errors}>{errors.price}</div>
         ) : null}
-        <label htmlFor="Descripción">Descripción:</label>
-        <Field name="Descripción" />
-        {errors.Descripción && touched.Descripción ? (
-            <div className={styles.errors}>{errors.Descripción}</div>
+        <label className="color-letters" htmlFor="description">Descripción:</label>
+        <Field name="description" />
+        {errors.description && touched.description ? (
+            <div className={styles.errors}>{errors.description}</div>
         ) : null}
-        <button type="submit">Create</button>
+        <button type="submit">Crear</button>
         </Form>
     )}
     </Formik>
